@@ -28,7 +28,7 @@ jobs:
           
       - name: create data directories
         run: |
-          mkdir -p data/raw data/processed data/features models
+          mkdir -p data/raw data/processed data/interim models
           
       - name: generate test data
         run: |
@@ -50,13 +50,13 @@ jobs:
               'EmployeeId': np.random.randint(1000, 2000, n_records)
           }
           df = pd.DataFrame(data)
-          df.to_csv('data/raw/EmployeeScheduleData 2.csv', index=False)
+          df.to_csv('data/raw/EmployeeScheduleData_2.csv', index=False)
           print(f'Created test data with {len(df)} records')
           "
           
       - name: run data ingestion
         run: |
-          python src/data/data_ingestion.py EmployeeScheduleData 2.csv
+          python src/data/data_ingestion.py EmployeeScheduleData_2.csv
           
       - name: run feature engineering
         run: |
